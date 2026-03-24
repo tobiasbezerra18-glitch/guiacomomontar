@@ -686,6 +686,27 @@ footer {
 </footer>
 
 <script>
+    function handleSubmit() {
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    const tipo = document.getElementById('tipo').value;
+
+    if (!nome || !email || !whatsapp || !tipo) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    // Abre o Drive direto
+    window.open('https://drive.google.com/file/d/SEU_ID_AQUI/view', '_blank');
+
+    // Esconde o formulário
+    document.getElementById('form-area').style.display = 'none';
+
+    // Mostra a mensagem de sucesso que já existe no seu HTML
+    document.getElementById('success').style.display = 'block';
+  }
+</script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyRmIx3tB1-mT0gsrpjoodoiHA6a7vzQyX2sNSBk7v9Ch9uXIbpSsVCkY2gc-grhHCmsg/exec';
 
 async function handleSubmit() {
