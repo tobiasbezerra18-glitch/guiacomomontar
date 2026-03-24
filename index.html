@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Como Montar o Manual de Boas Práticas da Sua Clínica — Bonvie</title>
-<style>
 <style>
 @font-face {
   font-family: 'MadeTommy';
@@ -55,7 +53,6 @@ header {
 .logo {
   width: 150px;      
   display: block;
-  mix-blend-mode: screen; 
   font-weight: 500;
   font-size: 22px;
   letter-spacing: 0.18em;
@@ -475,6 +472,26 @@ header {
 .success-msg p {
   font-weight: 300; font-size: 16px; color: #666; line-height: 1.6;
 }
+.btn-download-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--persian);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(31,41,214,0.2);
+}
+.btn-download-now:hover {
+  background: var(--dodger);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(31,41,214,0.3);
+}
 
 /* ── FOOTER ── */
 footer {
@@ -672,7 +689,15 @@ footer {
         </svg>
       </div>
       <h3>Cadastro realizado!</h3>
-      <p>Seu material foi aberto em uma nova aba. Salve o link para acessar quando quiser.</p>
+      <p>Seu material está pronto. Se o download não começou automaticamente, clique no botão abaixo:</p>
+      <a href="https://drive.google.com/file/d/1SpcyxGKBa2W8KyCF-DzjWQG27_ps7GvZ/view?usp=sharing" target="_blank" class="btn-download-now">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        ACESSAR MATERIAL AGORA
+      </a>
     </div>
   </div>
 </section>
@@ -731,10 +756,16 @@ async function handleSubmit() {
     console.error('Erro:', err);
   }
 
-  window.open('https://drive.google.com/file/d/1SpcyxGKBa2W8KyCF-DzjWQG27_ps7GvZ/view?usp=sharing', '_blank');
+  try {
+    // Attempt to open in a new window (may be blocked on mobile)
+    window.open('https://drive.google.com/file/d/1SpcyxGKBa2W8KyCF-DzjWQG27_ps7GvZ/view?usp=sharing', '_blank');
+  } catch (e) {
+    console.log("Popup blocked");
+  }
 
   document.getElementById('form-area').style.display = 'none';
   document.getElementById('success').style.display = 'block';
+  document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 document.querySelectorAll('a[href="#form"]').forEach(a => {
