@@ -686,27 +686,6 @@ footer {
 </footer>
 
 <script>
-    function handleSubmit() {
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const whatsapp = document.getElementById('whatsapp').value;
-    const tipo = document.getElementById('tipo').value;
-
-    if (!nome || !email || !whatsapp || !tipo) {
-      alert('Por favor, preencha todos os campos.');
-      return;
-    }
-
-    // Abre o Drive direto
-    window.open('https://drive.google.com/file/d/1SpcyxGKBa2W8KyCF-DzjWQG27_ps7GvZ/view?usp=sharing', '_blank');
-
-    // Esconde o formulário
-    document.getElementById('form-area').style.display = 'none';
-
-    // Mostra a mensagem de sucesso que já existe no seu HTML
-    document.getElementById('success').style.display = 'block';
-  }
-</script>
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyRmIx3tB1-mT0gsrpjoodoiHA6a7vzQyX2sNSBk7v9Ch9uXIbpSsVCkY2gc-grhHCmsg/exec';
 
 async function handleSubmit() {
@@ -751,11 +730,12 @@ async function handleSubmit() {
     console.error('Erro:', err);
   }
 
+  window.open('https://drive.google.com/file/d/1SpcyxGKBa2W8KyCF-DzjWQG27_ps7GvZ/view?usp=sharing', '_blank');
+
   document.getElementById('form-area').style.display = 'none';
   document.getElementById('success').style.display = 'block';
 }
 
-// Smooth scroll
 document.querySelectorAll('a[href="#form"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
@@ -763,7 +743,6 @@ document.querySelectorAll('a[href="#form"]').forEach(a => {
   });
 });
 
-// Scroll reveal for cards
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -780,7 +759,6 @@ document.querySelectorAll('.feature-card').forEach((el, i) => {
   observer.observe(el);
 });
 
-// Magnetic effect on CTA buttons
 document.querySelectorAll('.btn-primary, .btn-persian, .btn-submit').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
